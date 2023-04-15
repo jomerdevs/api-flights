@@ -21,7 +21,7 @@ export class UserService {
         return await bcrypt.compare(password, passwordDB);
     }
 
-    async findByUsername(username: string): Promise<IUser> {
+    async findByUsername(username: string) {
         return await this.model.findOne({ username });
     }
 

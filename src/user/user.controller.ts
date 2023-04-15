@@ -1,9 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { UserDTO } from './DTO/user.dto';
 import { UserService } from './user.service';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @ApiTags('users') // swagger doc tag
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard) // jwt authorization para acceso a endpoints
 @Controller('api/v1/user')
 export class UserController {
 
